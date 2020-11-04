@@ -1,9 +1,11 @@
 package com.dducks.spicyDiary.history.domin
 
+import java.time.LocalDateTime
+
 class History(var id : Int, var lineNo : Int, var stationNo : Int,
               var visited : Boolean, var storeName : String, var content : String,
               var registrant : String, var photo : String, var rating : Float,
-              var date : Long, var friends : Array<User>
+              var date : LocalDateTime, var friends : Array<User>
 )
 {
     fun addHistory(history: History): Boolean {
