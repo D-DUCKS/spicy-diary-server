@@ -1,6 +1,6 @@
 package com.dducks.spicyDiary.history.domin
 
-class History(historyNo: HistoryNo, subway: HistorySubway, post: HistoryPost, registrant: HistoryRegistrant)
+class History(historyNo: HistoryNo, subway: HistorySubway, post: HistoryPost, registrant: HistoryUser)
 {
     private val historyNo = historyNo
     private val subway = subway
