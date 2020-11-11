@@ -1,9 +1,20 @@
 package com.dducks.spicyDiary.party.domain
 
 import java.time.LocalDateTime
+import javax.persistence.*
 
-class Party(partyLocation: PartyLocation, dateAndTime: LocalDateTime, host: Host) {
+@Entity
+class Party(wishListId: WishListId, dateAndTime: LocalDateTime, hostId: HostId) {
 //    val id
-    val dateAndTime = dateAndTime
-    val host = host
+
+    @Embedded
+    @AttributeOverride(name = "id", column = Column(name = "wishlist_id"))
+    val wishListId:WishListId = wishListId
+
+    @Embedded
+    val dateAndTime:LocalDateTime = dateAndTime
+
+    @Embedded
+    @AttributeOverride(name = "id", column = Column(name = "host_id"))
+    val hostId:HostId = hostId
 }

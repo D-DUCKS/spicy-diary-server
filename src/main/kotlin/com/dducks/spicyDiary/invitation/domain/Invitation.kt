@@ -1,8 +1,17 @@
 package com.dducks.spicyDiary.invitation.domain
 
+import javax.persistence.Entity
+import javax.persistence.Id
+
+@Entity
 class Invitation(partyId: String) {
-    val partyId = partyId
-    val invitees:HashMap<String, Boolean> = HashMap<String,Boolean>()
+
+    @Id
+    private lateinit var id: String
+
+    private  val partyId = partyId
+
+    private val invitees:HashMap<String, Boolean> = HashMap<String,Boolean>()
 
     fun addInvitees(memberId: String) {
         invitees.put(memberId, false)
