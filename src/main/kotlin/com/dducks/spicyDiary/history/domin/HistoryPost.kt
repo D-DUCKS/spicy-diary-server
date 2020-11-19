@@ -1,7 +1,9 @@
 package com.dducks.spicyDiary.history.domin
 
 import java.time.LocalDateTime
+import javax.persistence.Embeddable
 
+@Embeddable
 class HistoryPost(storeName: String, content: String,
                     photo: String, rating: Float, date: LocalDateTime, friendList: List<HistoryUser>) {
     private var storeName = storeName
