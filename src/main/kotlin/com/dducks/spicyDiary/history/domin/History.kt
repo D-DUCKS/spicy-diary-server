@@ -1,8 +1,8 @@
 package com.dducks.spicyDiary.history.domin
 
-class History(historyNo: HistoryNo, subway: HistorySubway, post: HistoryPost, registrant: HistoryUser)
+class History(subway: HistorySubway, post: HistoryPost, registrant: HistoryUser)
 {
-    private val historyNo = historyNo
+    private lateinit var historyNo: HistoryNo
     private val subway = subway
     private var post = post
     private val registrant = registrant
@@ -14,4 +14,6 @@ class History(historyNo: HistoryNo, subway: HistorySubway, post: HistoryPost, re
     private fun setPost(newPost: HistoryPost) {
         this.post = newPost
     }
+
+
 }
