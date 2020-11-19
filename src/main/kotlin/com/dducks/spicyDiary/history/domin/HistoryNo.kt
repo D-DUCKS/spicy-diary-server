@@ -1,5 +1,9 @@
 package com.dducks.spicyDiary.history.domin
 
-class HistoryNo() {
-    private var historyNo: Long = 0
+import java.io.Serializable
+import javax.persistence.Embeddable
+
+@Embeddable
+class HistoryNo(historyNo: Long): Serializable{
+    private var historyNo = historyNo
 }
