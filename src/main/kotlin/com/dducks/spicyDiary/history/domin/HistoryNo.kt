@@ -1,5 +1,5 @@
 package com.dducks.spicyDiary.history.domin
 
-class HistoryNo(historyNo: Long) {
-    private val historyNo = historyNo
+class HistoryNo() {
+    private var historyNo: Long = 0
 }
