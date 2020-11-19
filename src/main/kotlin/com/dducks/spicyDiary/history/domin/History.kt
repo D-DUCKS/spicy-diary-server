@@ -3,8 +3,10 @@ package com.dducks.spicyDiary.history.domin
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
+@Table(name = "history")
 class History(subway: HistorySubway, post: HistoryPost, registrant: HistoryUser)
 {
     @Id
