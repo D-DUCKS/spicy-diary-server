@@ -1,9 +1,6 @@
 package com.dducks.spicyDiary.history.domin
 
-import javax.persistence.Embedded
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "history")
@@ -15,7 +12,7 @@ class History(subway: HistorySubway, post: HistoryPost, registrant: HistoryUser)
     private val subway = subway
     @Embedded
     private var post = post
-    @Embedded
+    @OneToOne
     private val registrant = registrant
 
     fun changePost(newPost: HistoryPost) {
