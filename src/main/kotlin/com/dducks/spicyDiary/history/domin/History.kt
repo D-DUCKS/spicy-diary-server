@@ -24,4 +24,52 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
     private var friends = friends
 
     private val registrant = registrant
+
+    fun getHistoryNo(): HistoryNo {
+        return this.historyNo
+    }
+
+    fun getStoreName(): String {
+        return this.storeName
+    }
+
+    fun setStoreName(storeName: String) {
+        this.storeName = storeName
+    }
+
+    fun getContent(): String {
+        return this.content
+    }
+
+    fun setContent(content: String) {
+        this.content = content
+    }
+
+    fun getPhoto(): String {
+        return this.photo
+    }
+
+    fun setPhoto(photo: String) {
+        this.photo = photo
+    }
+
+    fun getRating(): Float {
+        return this.rating
+    }
+
+    fun setRating(rating: Float) {
+        this.rating = rating
+    }
+
+    fun setDate() {
+        this.date = LocalDateTime.now()
+    }
+
+    fun getFriends(): Set<HistoryUser> {
+        return this.friends
+    }
+
+    fun setFriends(friends: Set<HistoryUser>) {
+        this.friends = friends
+    }
 }
