@@ -6,7 +6,8 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "history_user")
-class HistoryUser(userId: String) {
+class HistoryUser(nickName: String) {
     @Id
-    private val userId = userId
+    private lateinit var userId: String
+    private var nickName = nickName
 }
