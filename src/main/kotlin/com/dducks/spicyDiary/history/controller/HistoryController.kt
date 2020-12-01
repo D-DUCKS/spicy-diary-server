@@ -1,7 +1,6 @@
 package com.dducks.spicyDiary.history.controller
 
 import com.dducks.spicyDiary.history.domin.History
-import com.dducks.spicyDiary.history.domin.HistoryNo
 import com.dducks.spicyDiary.history.domin.HistorySubway
 import com.dducks.spicyDiary.history.service.HistoryService
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,15 +14,15 @@ class HistoryController {
     private lateinit var historyService: HistoryService
 
     @GetMapping("/{subwayId}")
-    fun getHistorys(@PathVariable subwayId: String): ResponseEntity<*> {
-        val historys = historyService.getHistorys(HistorySubway(subwayId))
+    fun getHistoryList(@PathVariable subwayId: String): ResponseEntity<*> {
+        val historys = historyService.getHistoryList(HistorySubway(subwayId))
 
         return ResponseEntity.ok(historys)
     }
 
     @GetMapping("/detail/{historyNo}")
     fun getDetailHistory(@PathVariable historyNo: Long): ResponseEntity<*> {
-        val detailHistory = historyService.getDetailHistory(HistoryNo(historyNo));
+        val detailHistory = historyService.getDetailHistory(historyNo)
 
         return ResponseEntity.ok(detailHistory)
     }
@@ -44,7 +43,7 @@ class HistoryController {
 
     @DeleteMapping("/{historyNo}")
     fun deleteHistory(@PathVariable historyNo: Long): ResponseEntity.BodyBuilder {
-        historyService.deleteHistory(HistoryNo(historyNo))
+        historyService.deleteHistory(historyNo)
 
         return ResponseEntity.ok()
     }

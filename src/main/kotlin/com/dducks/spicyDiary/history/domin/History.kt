@@ -6,9 +6,10 @@ import javax.persistence.*
 @Entity
 @Table(name = "history")
 class History(subway: HistorySubway, storeName: String, content: String, photo: String, rating: Float,
-              date: LocalDateTime, friends: Set<HistoryUser>, registrant: String) {
+              date: LocalDateTime, registrant: String) {
     @Id
-    private lateinit var historyNo: HistoryNo
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private var historyNo: Long? = null
 
     @Embedded
     private val subway = subway
@@ -19,13 +20,17 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
     private var rating = rating
     private var date = date
 
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
-    @JoinColumn(name = "historyNo")
-    private var friends = friends
+
+    // TODO : 관계 설정 방법 고민
+//    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
+//    @JoinColumn(name = "historyNo")
+//    private var friends = friends
 
     private val registrant = registrant
 
-    fun getHistoryNo(): HistoryNo {
+    constructor() : this(HistorySubway(""), "", "", "", 0.0F, LocalDateTime.now(), "")
+
+    fun getHistoryNo(): Long? {
         return this.historyNo
     }
 
@@ -65,11 +70,11 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
         this.date = LocalDateTime.now()
     }
 
-    fun getFriends(): Set<HistoryUser> {
-        return this.friends
-    }
-
-    fun setFriends(friends: Set<HistoryUser>) {
-        this.friends = friends
-    }
+//    fun getFriends(): Set<HistoryUser> {
+//        return this.friends
+//    }
+//
+//    fun setFriends(friends: Set<HistoryUser>) {
+//        this.friends = friends
+//    }
 }
