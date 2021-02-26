@@ -35,6 +35,10 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
         return this.historyNo
     }
 
+    fun getSubway(): HistorySubway {
+        return this.subway
+    }
+
     fun getStoreName(): String {
         return this.storeName
     }

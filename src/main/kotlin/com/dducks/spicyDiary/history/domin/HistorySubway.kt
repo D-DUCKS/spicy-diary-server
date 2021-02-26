@@ -1,8 +1,13 @@
 package com.dducks.spicyDiary.history.domin
 
-import javax.persistence.Embeddable
+import javax.persistence.*
 
 @Embeddable
-class HistorySubway(subwayId: String){
-    private val subwayId = subwayId
+@Access(AccessType.FIELD)
+class HistorySubway(subwayId: String) {
+    private var subwayId = subwayId
+
+    fun getSubwayId(): String {
+        return this.subwayId
+    }
 }
