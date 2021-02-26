@@ -44,6 +44,7 @@ class HistoryService {
         history.setRating(newHistory.getRating())
         history.setDate()
 //        history.setFriends(newHistory.getFriends())
+        history.setLocation(newHistory.getLocation())
 
         historyRepository.save(history)
     }

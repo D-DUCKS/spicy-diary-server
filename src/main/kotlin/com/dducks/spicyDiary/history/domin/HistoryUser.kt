@@ -1,13 +1,11 @@
 package com.dducks.spicyDiary.history.domin
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
-@Entity
-@Table(name = "history_user")
-class HistoryUser(nickName: String) {
-    @Id
-    private lateinit var userId: String
+@Embeddable
+class HistoryUser(userId: String, nickName: String, photo: String) {
+    private var userId = userId
     private var nickName = nickName
+    @Column(name="profilePhoto")
+    private var photo = photo
 }

@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "history")
 class History(subway: HistorySubway, storeName: String, content: String, photo: String, rating: Float,
-              date: LocalDateTime, registrant: String) {
+              date: LocalDateTime, location: String, registrant: HistoryUser) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var historyNo: Long? = null
@@ -19,16 +19,17 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
     private var photo = photo
     private var rating = rating
     private var date = date
-
+    private var location = location
 
     // TODO : 관계 설정 방법 고민
 //    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
 //    @JoinColumn(name = "historyNo")
 //    private var friends = friends
 
+    @Embedded
     private val registrant = registrant
 
-    constructor() : this(HistorySubway(""), "", "", "", 0.0F, LocalDateTime.now(), "")
+    constructor() : this(HistorySubway(""), "", "", "", 0.0F, LocalDateTime.now(), "", HistoryUser("", "", ""))
 
     fun getHistoryNo(): Long? {
         return this.historyNo
@@ -68,6 +69,18 @@ class History(subway: HistorySubway, storeName: String, content: String, photo: 
 
     fun setDate() {
         this.date = LocalDateTime.now()
+    }
+
+    fun getLocation(): String {
+        return this.location
+    }
+
+    fun setLocation(location: String) {
+        this.location = location
+    }
+
+    fun getRegistrant(): HistoryUser {
+        return this.registrant
     }
 
 //    fun getFriends(): Set<HistoryUser> {

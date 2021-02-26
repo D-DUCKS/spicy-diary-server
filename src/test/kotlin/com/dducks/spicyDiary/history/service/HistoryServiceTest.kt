@@ -2,6 +2,7 @@ package com.dducks.spicyDiary.history.service
 
 import com.dducks.spicyDiary.history.domin.History
 import com.dducks.spicyDiary.history.domin.HistorySubway
+import com.dducks.spicyDiary.history.domin.HistoryUser
 import junit.framework.Assert.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -23,16 +24,17 @@ class HistoryServiceTest @Autowired constructor(
     private val photo = ""
     private val rating = 1.0F
     private val date = LocalDateTime.now()
-    private val registrant = "seonhee"
+    private val location = "수내역";
+    private val registrant = HistoryUser("dnwjdqldb", "메밀탱크", "profile photo");
 
     @Test
     @Transactional
     fun getHistoryList___정상동작일_경우___historyList_반환() {
         val firstStoreName = "firstStore"
-        val firstHistory = History(subway, firstStoreName, content, photo, rating, date, registrant)
+        val firstHistory = History(subway, firstStoreName, content, photo, rating, date, location, registrant)
 
         val secondStoreName = "secondStore"
-        val secondHistory = History(subway, secondStoreName, content, photo, rating, date, registrant)
+        val secondHistory = History(subway, secondStoreName, content, photo, rating, date, location, registrant)
 
         historyService.registerHistory(firstHistory)
         historyService.registerHistory(secondHistory)
@@ -48,7 +50,7 @@ class HistoryServiceTest @Autowired constructor(
     @Test
     @Transactional
     fun getDetailHistory___정상동작일_경우___history_반환() {
-        val registerHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, registrant))
+        val registerHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, location, registrant))
 
         val searchHistory = historyService.getDetailHistory(registerHistory.getHistoryNo())
 
@@ -66,7 +68,7 @@ class HistoryServiceTest @Autowired constructor(
     @Test
     @Transactional
     fun registerHistory_정상동작일_경우___history_저장() {
-        val history = History(subway, storeName, content, photo, rating, date, registrant)
+        val history = History(subway, storeName, content, photo, rating, date, location, registrant)
         val result = historyService.registerHistory(history)
 
         assertEquals(storeName, result.getStoreName())
@@ -89,7 +91,7 @@ class HistoryServiceTest @Autowired constructor(
     @Test
     @Transactional
     fun modifyHistory___정상동작일_경우___수정된_history_저장() {
-        val oldHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, registrant))
+        val oldHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, location, registrant))
 
         val newContent = "수정된 History 입니다!!!"
         val newHistory = historyService.getDetailHistory(oldHistory.getHistoryNo())
@@ -105,7 +107,7 @@ class HistoryServiceTest @Autowired constructor(
     @Test
     @Transactional
     fun deleteHistory___정상동작일_경우___history_삭제() {
-        val registerHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, registrant))
+        val registerHistory = historyService.registerHistory(History(subway, storeName, content, photo, rating, date, location, registrant))
 
         assertNotNull(historyService.getDetailHistory(registerHistory.getHistoryNo()))
 
