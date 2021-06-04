@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/history")
+@CrossOrigin("http://localhost:3000")
 class HistoryController {
     @Autowired
     private lateinit var historyService: HistoryService
 
-    @GetMapping("/{subwayId}")
+    @GetMapping("/{subwayId}") 
     fun getHistoryList(@PathVariable subwayId: String): ResponseEntity<*> {
         val historys = historyService.getHistoryList(HistorySubway(subwayId))
 
