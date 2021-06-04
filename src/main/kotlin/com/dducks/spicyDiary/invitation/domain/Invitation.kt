@@ -3,7 +3,7 @@ package com.dducks.spicyDiary.invitation.domain
 import javax.persistence.Entity
 import javax.persistence.Id
 
-@Entity
+//@Entity
 class Invitation(partyId: String) {
 
     @Id
